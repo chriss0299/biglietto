@@ -1,0 +1,104 @@
+<!-- Dichiara al browser che il documento usa lo standard HTML5 -->
+<!DOCTYPE html>
+<!-- Elemento radice: lang="it" indica la lingua principale a browser e screen reader -->
+<html lang="it">
+<!-- Contenitore dei metadati: informazioni sulla pagina, non visibili nel contenuto -->
+<head>
+  <!-- Codifica dei caratteri: UTF-8 gestisce lettere accentate e caratteri giapponesi -->
+  <meta charset="UTF-8">
+  <!-- Adatta la larghezza della pagina a quella dello schermo: indispensabile su cellulare -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Descrizione breve usata dai motori di ricerca nei risultati -->
+  <meta name="description" content="Biglietto da visita digitale di Christian Colonna, Full Stack Web Developer.">
+  <!-- Titolo mostrato nella scheda del browser e letto per primo dagli screen reader -->
+  <title>Christian Colonna - Full Stack Web Developer</title>
+  <!-- Apre in anticipo la connessione al server dei font, per caricarli più in fretta -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Stessa cosa per il server che ospita i file dei font; crossorigin è richiesto per i font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Carica i due font di Google; display=swap mostra subito il testo con un font di riserva -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+  <!-- Collega il foglio di stile esterno: struttura e aspetto restano in file separati -->
+  <link rel="stylesheet" href="style.css">
+<!-- Chiusura dei metadati -->
+</head>
+<!-- Contenitore di tutto il contenuto visibile -->
+<body>
+
+  <!-- Colonna decorativa: aria-hidden="true" la nasconde agli screen reader perché ripete il nome -->
+  <div class="decorazione" aria-hidden="true">
+    <!-- Nome in katakana: lang="ja" segnala che questo testo è in giapponese -->
+    <p class="katakana" lang="ja">クリスティアン・コロンナ</p>
+    <!-- Sigillo in stile hanko con il cognome in katakana -->
+    <p class="sigillo" lang="ja">コロンナ</p>
+  <!-- Chiusura della colonna decorativa -->
+  </div>
+
+  <!-- Intestazione della pagina: contiene l'identità del proprietario del biglietto -->
+  <header>
+    <!-- Titolo principale: un solo h1 per pagina, qui il nome -->
+    <h1>Christian Colonna</h1>
+    <!-- Ruolo professionale: è un testo descrittivo, quindi un paragrafo e non un titolo -->
+    <p class="ruolo">Full Stack Web Developer</p>
+  <!-- Chiusura dell'intestazione -->
+  </header>
+
+  <!-- Contenuto principale: un solo main per pagina, usato dagli screen reader per saltarci direttamente -->
+  <main>
+    <!-- Titolo di sezione: dà un nome all'elenco e mantiene la gerarchia h1 > h2 -->
+    <h2>Contatti</h2>
+    <!-- Lista non ordinata: i contatti sono voci dello stesso tipo senza un ordine obbligato -->
+    <ul class="contatti">
+      <!-- Prima voce della lista -->
+      <li>
+        <!-- Etichetta che spiega il tipo di contatto -->
+        <span class="etichetta">Email</span>
+        <!-- Link mailto: apre l'app di posta con il destinatario già inserito -->
+        <a href="mailto:colonnachristian02@gmail.com">colonnachristian02@gmail.com</a>
+      <!-- Chiusura della prima voce -->
+      </li>
+      <!-- Seconda voce della lista -->
+      <li>
+        <!-- Etichetta del contatto telefonico -->
+        <span class="etichetta">Telefono</span>
+        <!-- Link tel: avvia la chiamata; nell'href il numero è in formato internazionale senza spazi -->
+        <a href="tel:+393487646710">+39 348 764 6710</a>
+      <!-- Chiusura della seconda voce -->
+      </li>
+      <!-- Terza voce della lista -->
+      <li>
+        <!-- Etichetta del sito personale -->
+        <span class="etichetta">Sito</span>
+        <!-- Link esterno con protocollo https esplicito, altrimenti sarebbe un percorso relativo -->
+        <a href="https://christiancolonna.com">christiancolonna.com</a>
+      <!-- Chiusura della terza voce -->
+      </li>
+      <!-- Quarta voce della lista -->
+      <li>
+        <!-- Etichetta del profilo GitHub -->
+        <span class="etichetta">GitHub</span>
+        <!-- Link al profilo GitHub -->
+        <a href="https://github.com/chriss0299">chriss0299</a>
+      <!-- Chiusura della quarta voce -->
+      </li>
+      <!-- Da aggiungere: voce LinkedIn, quando sarà disponibile il link del profilo -->
+    <!-- Chiusura della lista -->
+    </ul>
+  <!-- Chiusura del contenuto principale -->
+  </main>
+
+  <!-- Piè di pagina: raccoglie le azioni del biglietto -->
+  <footer>
+    <!-- Link e non pulsante perché punta a un file; download suggerisce al browser di salvarlo -->
+    <a class="salva" href="christian-colonna.vcf" download>Salva contatto</a>
+    <!-- Pulsante: esegue un'azione nella pagina; type="button" evita il comportamento da invio modulo -->
+    <button class="condividi" type="button">Condividi</button>
+    <!-- Pulsante che mostrerà il QR code; la logica arriverà con JavaScript -->
+    <button class="qr" type="button">QR code</button>
+  <!-- Chiusura del piè di pagina -->
+  </footer>
+
+<!-- Chiusura del contenuto visibile -->
+</body>
+<!-- Chiusura del documento -->
+</html>

@@ -1,0 +1,339 @@
+/* Seleziona ogni elemento e i suoi pseudo-elementi */
+*,
+*::before,
+*::after {
+  /* Include padding e bordo nella larghezza dichiarata: i calcoli diventano prevedibili */
+  box-sizing: border-box;
+}
+
+/* :root è l'elemento html: qui si dichiarano le variabili valide in tutta la pagina */
+:root {
+  /* Colore di sfondo, simile alla carta washi */
+  --carta: #F4F0E6;
+  /* Colore del testo principale, nero inchiostro */
+  --inchiostro: #1C1B19;
+  /* Grigio per etichette e testi secondari, con contrasto sufficiente sulla carta */
+  --grigio: #5E5A52;
+  /* Colore delle linee sottili tra i contatti */
+  --linea: #CFC8B8;
+  /* Rosso vermiglio del sigillo, unico colore d'accento */
+  --rosso: #C8321E;
+  /* Rosso più scuro per lo stato hover dei link, leggibile come testo */
+  --rosso-scuro: #8E2415;
+  /* Famiglia di caratteri per nome e katakana, con serif come riserva */
+  --font-titolo: "Shippori Mincho", serif;
+  /* Famiglia di caratteri per il resto del testo, con font di sistema come riserva */
+  --font-testo: "Zen Kaku Gothic New", system-ui, sans-serif;
+}
+
+/* Elemento radice della pagina */
+html {
+  /* Sfondo esteso a tutto lo schermo, anche oltre la larghezza del biglietto */
+  background-color: var(--carta);
+}
+
+/* Il body è il biglietto: una griglia con colonna decorativa e colonna dei contenuti */
+body {
+  /* Attiva il layout a griglia */
+  display: grid;
+  /* Due colonne: una stretta e fissa per la decorazione, una che prende lo spazio restante */
+  grid-template-columns: 2.75rem 1fr;
+  /* Tre righe: intestazione, contenuto che si allarga, piè di pagina */
+  grid-template-rows: auto 1fr auto;
+  /* Spazio orizzontale tra le due colonne */
+  column-gap: 1.25rem;
+  /* Spazio verticale tra intestazione, contatti e azioni */
+  row-gap: 1.75rem;
+  /* Altezza minima pari allo schermo: valore di riserva per i browser meno recenti */
+  min-height: 100vh;
+  /* Stessa regola con dvh, che tiene conto della barra degli indirizzi su cellulare */
+  min-height: 100dvh;
+  /* Larghezza massima: su schermi grandi il biglietto non si allarga troppo */
+  max-width: 26rem;
+  /* Azzera il margine predefinito e centra il biglietto in orizzontale */
+  margin: 0 auto;
+  /* Spazio interno: sopra, destra, sotto, sinistra */
+  padding: 2.5rem 1.5rem 1.75rem 1.25rem;
+  /* Colore del testo ereditato da tutti gli elementi */
+  color: var(--inchiostro);
+  /* Carattere di base ereditato da tutti gli elementi */
+  font-family: var(--font-testo);
+  /* Interlinea di base, senza unità per scalare con la dimensione del testo */
+  line-height: 1.4;
+}
+
+/* Colonna decorativa con katakana e sigillo */
+.decorazione {
+  /* Posiziona l'elemento nella prima colonna */
+  grid-column: 1;
+  /* Lo estende dalla prima all'ultima riga della griglia */
+  grid-row: 1 / -1;
+  /* Flexbox per disporre i due elementi interni */
+  display: flex;
+  /* Direzione verticale: katakana sopra, sigillo sotto */
+  flex-direction: column;
+  /* Centra gli elementi in orizzontale nella colonna */
+  align-items: center;
+  /* Spinge il katakana in alto e il sigillo in basso */
+  justify-content: space-between;
+}
+
+/* Nome in katakana */
+.katakana {
+  /* Rimuove il margine predefinito del paragrafo */
+  margin: 0;
+  /* Scrittura verticale, dall'alto in basso, come nel giapponese tradizionale */
+  writing-mode: vertical-rl;
+  /* Usa il carattere dei titoli */
+  font-family: var(--font-titolo);
+  /* Dimensione del testo */
+  font-size: 1.25rem;
+  /* Peso medio del carattere */
+  font-weight: 500;
+  /* Spaziatura ampia tra i caratteri */
+  letter-spacing: 0.45rem;
+}
+
+/* Sigillo rosso in stile hanko */
+.sigillo {
+  /* Rimuove il margine predefinito del paragrafo */
+  margin: 0;
+  /* Larghezza del sigillo */
+  width: 2.75rem;
+  /* Altezza uguale alla larghezza: forma quadrata */
+  height: 2.75rem;
+  /* Spazio interno: lascia posto a due caratteri per riga */
+  padding: 0.3rem 0.4rem;
+  /* Angoli leggermente arrotondati */
+  border-radius: 0.25rem;
+  /* Sfondo rosso vermiglio */
+  background-color: var(--rosso);
+  /* Testo color carta, per contrasto sul rosso */
+  color: var(--carta);
+  /* Usa il carattere dei titoli */
+  font-family: var(--font-titolo);
+  /* Dimensione del testo */
+  font-size: 0.9375rem;
+  /* Carattere in grassetto */
+  font-weight: 700;
+  /* Interlinea stretta per far stare due righe nel quadrato */
+  line-height: 1.15;
+  /* Centra i caratteri in orizzontale */
+  text-align: center;
+  /* Permette di andare a capo dopo qualsiasi carattere: quattro caratteri diventano due righe */
+  word-break: break-all;
+}
+
+/* Intestazione, contenuto principale e piè di pagina */
+header,
+main,
+footer {
+  /* Li posiziona tutti nella seconda colonna */
+  grid-column: 2;
+  /* Permette alla colonna di restringersi senza far uscire il contenuto */
+  min-width: 0;
+}
+
+/* Nome, titolo principale */
+h1 {
+  /* Rimuove il margine predefinito del titolo */
+  margin: 0;
+  /* Usa il carattere dei titoli */
+  font-family: var(--font-titolo);
+  /* Dimensione grande: è l'elemento più importante */
+  font-size: 2.625rem;
+  /* Carattere in grassetto */
+  font-weight: 700;
+  /* Interlinea stretta, adatta ai titoli su due righe */
+  line-height: 1.15;
+}
+
+/* Ruolo professionale */
+.ruolo {
+  /* Margine solo sopra, per staccarlo dal nome */
+  margin: 0.875rem 0 0;
+  /* Colore secondario */
+  color: var(--grigio);
+  /* Dimensione piccola */
+  font-size: 0.8125rem;
+  /* Peso medio del carattere */
+  font-weight: 500;
+  /* Spaziatura tra le lettere, in em per scalare con il testo */
+  letter-spacing: 0.11em;
+  /* Maiuscolo applicato dal CSS: nell'HTML il testo resta scritto normalmente */
+  text-transform: uppercase;
+}
+
+/* Pseudo-elemento dopo il ruolo: disegna la lineetta rossa senza aggiungere HTML */
+.ruolo::after {
+  /* Contenuto vuoto: obbligatorio per far esistere lo pseudo-elemento */
+  content: "";
+  /* Elemento a blocco, così va a capo sotto il testo */
+  display: block;
+  /* Larghezza della lineetta */
+  width: 2.25rem;
+  /* Spessore della lineetta */
+  height: 2px;
+  /* Distanza dal testo del ruolo */
+  margin-top: 0.875rem;
+  /* Colore d'accento */
+  background-color: var(--rosso);
+}
+
+/* Titolo della sezione contatti */
+h2 {
+  /* Margine solo sotto, per staccarlo dalla lista */
+  margin: 0 0 0.5rem;
+  /* Colore secondario */
+  color: var(--grigio);
+  /* Dimensione piccola, da etichetta */
+  font-size: 0.75rem;
+  /* Peso medio del carattere */
+  font-weight: 500;
+  /* Spaziatura tra le lettere */
+  letter-spacing: 0.14em;
+  /* Maiuscolo applicato dal CSS */
+  text-transform: uppercase;
+}
+
+/* Lista dei contatti */
+.contatti {
+  /* Rimuove i pallini della lista */
+  list-style: none;
+  /* Rimuove il margine predefinito */
+  margin: 0;
+  /* Rimuove il rientro predefinito */
+  padding: 0;
+  /* Linea di chiusura sotto l'ultima voce */
+  border-bottom: 1px solid var(--linea);
+}
+
+/* Singola voce della lista */
+.contatti li {
+  /* Flexbox per impilare etichetta e link */
+  display: flex;
+  /* Direzione verticale */
+  flex-direction: column;
+  /* Spazio sopra l'etichetta */
+  padding-top: 0.625rem;
+  /* Linea sottile sopra ogni voce */
+  border-top: 1px solid var(--linea);
+}
+
+/* Etichetta del contatto */
+.etichetta {
+  /* Colore secondario */
+  color: var(--grigio);
+  /* Dimensione piccola */
+  font-size: 0.75rem;
+  /* Peso medio del carattere */
+  font-weight: 500;
+  /* Spaziatura tra le lettere */
+  letter-spacing: 0.14em;
+  /* Maiuscolo applicato dal CSS */
+  text-transform: uppercase;
+}
+
+/* Link del contatto */
+.contatti a {
+  /* Spazio verticale interno: porta l'area toccabile a circa 44px di altezza */
+  padding: 0.375rem 0 0.875rem;
+  /* Stesso colore del testo, non il blu predefinito */
+  color: var(--inchiostro);
+  /* Dimensione del testo */
+  font-size: 1.0625rem;
+  /* Peso medio del carattere */
+  font-weight: 500;
+  /* Rimuove la sottolineatura predefinita */
+  text-decoration: none;
+  /* Manda a capo gli indirizzi lunghi invece di farli uscire dallo schermo */
+  overflow-wrap: anywhere;
+}
+
+/* Link del contatto al passaggio del mouse */
+.contatti a:hover {
+  /* Cambia colore per segnalare che è cliccabile */
+  color: var(--rosso-scuro);
+  /* Aggiunge la sottolineatura come secondo segnale, oltre al colore */
+  text-decoration: underline;
+}
+
+/* Piè di pagina con le azioni */
+footer {
+  /* Griglia interna per disporre i tre controlli */
+  display: grid;
+  /* Due colonne uguali */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* Spazio tra i controlli */
+  gap: 0.625rem;
+}
+
+/* Link principale Salva contatto */
+.salva {
+  /* Occupa entrambe le colonne della griglia */
+  grid-column: 1 / -1;
+  /* Flexbox per centrare il testo */
+  display: flex;
+  /* Centra in verticale */
+  align-items: center;
+  /* Centra in orizzontale */
+  justify-content: center;
+  /* Altezza minima comoda per il tocco */
+  min-height: 3.375rem;
+  /* Angoli quasi vivi */
+  border-radius: 0.125rem;
+  /* Sfondo nero inchiostro */
+  background-color: var(--inchiostro);
+  /* Testo color carta */
+  color: var(--carta);
+  /* Dimensione del testo */
+  font-size: 1rem;
+  /* Carattere in grassetto */
+  font-weight: 700;
+  /* Spaziatura tra le lettere */
+  letter-spacing: 0.075em;
+  /* Rimuove la sottolineatura predefinita */
+  text-decoration: none;
+}
+
+/* Pulsanti secondari */
+.condividi,
+.qr {
+  /* Altezza minima comoda per il tocco */
+  min-height: 3rem;
+  /* Bordo sottile nero */
+  border: 1px solid var(--inchiostro);
+  /* Angoli quasi vivi */
+  border-radius: 0.125rem;
+  /* Sfondo trasparente: si vede la carta */
+  background-color: transparent;
+  /* Testo nero inchiostro */
+  color: var(--inchiostro);
+  /* I pulsanti non ereditano il font da soli: va richiesto */
+  font-family: inherit;
+  /* Dimensione del testo */
+  font-size: 0.9375rem;
+  /* Peso medio del carattere */
+  font-weight: 500;
+  /* Cursore a mano per segnalare che è cliccabile */
+  cursor: pointer;
+}
+
+/* Elemento raggiunto con la tastiera */
+:focus-visible {
+  /* Contorno ben visibile: non va mai rimosso senza un sostituto */
+  outline: 3px solid var(--rosso);
+  /* Distanza tra contorno ed elemento */
+  outline-offset: 3px;
+}
+
+/* Media query mobile-first: regole aggiunte solo da 640px di larghezza in su */
+@media (min-width: 40rem) {
+  /* Su schermi larghi il biglietto ha più aria */
+  body {
+    /* Più spazio sopra */
+    padding-top: 4rem;
+    /* Più spazio sotto */
+    padding-bottom: 3rem;
+  }
+}
