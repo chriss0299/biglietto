@@ -10,6 +10,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Descrizione breve usata dai motori di ricerca nei risultati -->
   <meta name="description" content="Biglietto da visita digitale di Christian Colonna, Full Stack Web Developer.">
+  <!-- Open Graph, tipo di contenuto: "profile" indica la pagina di una persona -->
+  <meta property="og:type" content="profile">
+  <!-- Titolo mostrato in grassetto nell'anteprima del link -->
+  <meta property="og:title" content="Christian Colonna - Full Stack Web Developer">
+  <!-- Testo breve mostrato sotto il titolo nell'anteprima -->
+  <meta property="og:description" content="Biglietto da visita digitale: contatti, sito e GitHub.">
+  <!-- Indirizzo definitivo della pagina: deve essere assoluto, con https -->
+  <meta property="og:url" content="https://card.christiancolonna.com/">
+  <!-- Immagine dell'anteprima: anche questo indirizzo deve essere assoluto -->
+  <meta property="og:image" content="https://card.christiancolonna.com/og-image.png">
+  <!-- Larghezza dell'immagine in pixel: evita all'app di doverla misurare -->
+  <meta property="og:image:width" content="1200">
+  <!-- Altezza dell'immagine in pixel: 1200x630 è il formato consigliato -->
+  <meta property="og:image:height" content="630">
+  <!-- Testo alternativo dell'immagine, per chi usa uno screen reader -->
+  <meta property="og:image:alt" content="Biglietto da visita di Christian Colonna, Full Stack Web Developer">
+  <!-- Lingua e paese del contenuto -->
+  <meta property="og:locale" content="it_IT">
+  <!-- Chiede alle app che usano le Twitter Card di mostrare l'immagine in formato grande -->
+  <meta name="twitter:card" content="summary_large_image">
   <!-- Titolo mostrato nella scheda del browser e letto per primo dagli screen reader -->
   <title>Christian Colonna - Full Stack Web Developer</title>
   <!-- Apre in anticipo la connessione al server dei font, per caricarli più in fretta -->
@@ -89,8 +109,8 @@
 
   <!-- Piè di pagina: raccoglie le azioni del biglietto -->
   <footer>
-    <!-- Link e non pulsante perché punta a un file; download suggerisce al browser di salvarlo -->
-    <a class="salva" href="christian-colonna.vcf" download>Salva contatto</a>
+    <!-- Link e non pulsante perché punta a un file; download lo salva, type dichiara che è una vCard -->
+    <a class="salva" href="christian-colonna.vcf" download type="text/vcard">Salva contatto</a>
     <!-- Pulsante: esegue un'azione nella pagina; type="button" evita il comportamento da invio modulo -->
     <button class="condividi" type="button">Condividi</button>
     <!-- Pulsante che mostrerà il QR code; la logica arriverà con JavaScript -->
