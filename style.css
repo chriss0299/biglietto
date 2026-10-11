@@ -337,3 +337,19 @@ footer {
     padding-bottom: 3rem;
   }
 }
+
+/* Messaggio di conferma sotto i pulsanti */
+.stato {
+  /* Occupa entrambe le colonne della griglia del piè di pagina */
+  grid-column: 1 / -1;
+  /* Rimuove il margine predefinito del paragrafo */
+  margin: 0;
+  /* Altezza riservata anche quando è vuoto: la pagina non salta quando appare il testo */
+  min-height: 1.25rem;
+  /* Colore secondario */
+  color: var(--grigio);
+  /* Dimensione piccola */
+  font-size: 0.8125rem;
+  /* Testo centrato sotto i pulsanti */
+  text-align: center;
+}
