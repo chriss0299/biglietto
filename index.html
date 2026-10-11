@@ -40,6 +40,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
   <!-- Collega il foglio di stile esterno: struttura e aspetto restano in file separati -->
   <link rel="stylesheet" href="style.css">
+  <!-- Libreria esterna che disegna il QR code; va caricata prima dello script che la usa -->
+  <script src="qrcode.js" defer></script>
   <!-- Carica lo script; defer lo esegue solo dopo che l'HTML è stato letto per intero -->
   <script src="script.js" defer></script>
 <!-- Chiusura dei metadati -->
@@ -121,6 +123,19 @@
     <p class="stato" role="status"></p>
   <!-- Chiusura del piè di pagina -->
   </footer>
+
+  <!-- Finestra modale nativa: gestisce da sola il focus e la chiusura con il tasto Esc -->
+  <dialog class="finestra-qr" aria-labelledby="titolo-qr">
+    <!-- Titolo della finestra: l'id lo collega ad aria-labelledby, che dà un nome alla finestra -->
+    <h2 id="titolo-qr">Inquadra per aprire il biglietto</h2>
+    <!-- Contenitore del QR code: role="img" e aria-label lo descrivono a chi non può vederlo -->
+    <div class="codice-qr" role="img" aria-label="QR code con l'indirizzo di questa pagina"></div>
+    <!-- Indirizzo scritto in chiaro, utile a chi non può inquadrare il codice -->
+    <p class="indirizzo-qr"></p>
+    <!-- Pulsante di chiusura visibile: non tutti sanno di poter usare il tasto Esc -->
+    <button class="chiudi-qr" type="button">Chiudi</button>
+  <!-- Chiusura della finestra modale -->
+  </dialog>
 
 <!-- Chiusura del contenuto visibile -->
 </body>

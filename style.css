@@ -296,9 +296,10 @@ footer {
   text-decoration: none;
 }
 
-/* Pulsanti secondari */
+/* Pulsanti secondari, compreso quello che chiude la finestra del QR code */
 .condividi,
-.qr {
+.qr,
+.chiudi-qr {
   /* Altezza minima comoda per il tocco */
   min-height: 3rem;
   /* Bordo sottile nero */
@@ -352,4 +353,70 @@ footer {
   font-size: 0.8125rem;
   /* Testo centrato sotto i pulsanti */
   text-align: center;
+}
+
+/* Finestra modale del QR code */
+.finestra-qr {
+  /* Larghezza: 20rem al massimo, ma sempre con un margine dai bordi dello schermo */
+  width: min(20rem, calc(100% - 2rem));
+  /* Spazio interno */
+  padding: 1.5rem;
+  /* Bordo sottile nero, come i pulsanti */
+  border: 1px solid var(--inchiostro);
+  /* Angoli quasi vivi */
+  border-radius: 0.125rem;
+  /* Sfondo color carta */
+  background-color: var(--carta);
+  /* Testo nero inchiostro */
+  color: var(--inchiostro);
+  /* Contenuto centrato */
+  text-align: center;
+}
+
+/* Velo dietro la finestra modale: ::backdrop esiste solo mentre la finestra è aperta */
+.finestra-qr::backdrop {
+  /* Nero semitrasparente, per staccare la finestra dal resto della pagina */
+  background-color: rgba(28, 27, 25, 0.6);
+}
+
+/* Titolo dentro la finestra */
+.finestra-qr h2 {
+  /* Più spazio sotto rispetto agli altri titoli di sezione */
+  margin-bottom: 1rem;
+}
+
+/* Riquadro che contiene il QR code */
+.codice-qr {
+  /* Sfondo bianco pieno: il contrasto alto aiuta la fotocamera a leggere il codice */
+  background-color: #FFFFFF;
+  /* Margine bianco attorno al codice */
+  padding: 0.5rem;
+}
+
+/* Immagine SVG generata dalla libreria */
+.codice-qr svg {
+  /* Elemento a blocco: elimina lo spazio vuoto sotto l'immagine */
+  display: block;
+  /* Occupa tutta la larghezza del riquadro */
+  width: 100%;
+  /* Altezza calcolata in automatico per mantenere le proporzioni */
+  height: auto;
+}
+
+/* Indirizzo scritto sotto il QR code */
+.indirizzo-qr {
+  /* Spazio sopra e sotto */
+  margin: 0.75rem 0 1rem;
+  /* Colore secondario */
+  color: var(--grigio);
+  /* Dimensione piccola */
+  font-size: 0.8125rem;
+  /* Manda a capo gli indirizzi lunghi */
+  overflow-wrap: anywhere;
+}
+
+/* Pulsante che chiude la finestra */
+.chiudi-qr {
+  /* Largo quanto la finestra, comodo da toccare */
+  width: 100%;
 }

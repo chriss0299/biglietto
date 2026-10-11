@@ -37,3 +37,39 @@ pulsanteCondividi.addEventListener("click", async () => {
     }
   }
 });
+
+// Cerca il pulsante che apre il QR code
+const pulsanteQr = document.querySelector(".qr");
+// Cerca la finestra modale che lo contiene
+const finestraQr = document.querySelector(".finestra-qr");
+// Cerca il riquadro dove disegnare il codice
+const contenitoreQr = document.querySelector(".codice-qr");
+// Cerca il paragrafo dove scrivere l'indirizzo in chiaro
+const indirizzoQr = document.querySelector(".indirizzo-qr");
+// Cerca il pulsante che chiude la finestra
+const pulsanteChiudi = document.querySelector(".chiudi-qr");
+
+// Resta in ascolto del clic sul pulsante QR code
+pulsanteQr.addEventListener("click", () => {
+  // Disegna il codice solo la prima volta: se il riquadro è già pieno salta questo blocco
+  if (contenitoreQr.childElementCount === 0) {
+    // Crea un QR code: 0 sceglie da solo la grandezza, "M" è il livello medio di correzione errori
+    const codice = qrcode(0, "M");
+    // Inserisce nel codice l'indirizzo della pagina corrente
+    codice.addData(window.location.href);
+    // Calcola la griglia di quadratini
+    codice.make();
+    // Trasforma la griglia in un'immagine SVG e la inserisce nel riquadro
+    contenitoreQr.innerHTML = codice.createSvgTag({ scalable: true, margin: 4 });
+    // Scrive lo stesso indirizzo come testo sotto il codice
+    indirizzoQr.textContent = window.location.href;
+  }
+  // Apre la finestra come modale: blocca il resto della pagina e sposta il focus al suo interno
+  finestraQr.showModal();
+});
+
+// Resta in ascolto del clic sul pulsante Chiudi
+pulsanteChiudi.addEventListener("click", () => {
+  // Chiude la finestra e riporta il focus al pulsante che l'aveva aperta
+  finestraQr.close();
+});
